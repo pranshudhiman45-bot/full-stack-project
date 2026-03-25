@@ -2,7 +2,6 @@ import "./App.css";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import CreatePost from "./pages/CreatePost";
 import FeedPage from "./pages/FeedPage";
-
 function App() {
   return <>
   

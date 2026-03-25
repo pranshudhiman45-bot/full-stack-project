@@ -6,6 +6,8 @@ const CreatePost = () => {
   const [preview, setPreview] = useState(null);
 
   const handleFile = (file) => {
+    // const baseUrl = ;
+    // console.log("asd",baseUrl)
     if (file) {
       setPreview(URL.createObjectURL(file));
     }
@@ -14,9 +16,9 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const baseUrl = process.env.BASE_URL;
+    
     axios
-      .post(`${baseUrl}/create-post`, formData)
+      .post(`${import.meta.env.VITE_BASE_URL}/create-post`, formData)
       .then((res) => {
         navigate("/post");
       })
