@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const CreatePost = () => {
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const [preview, setPreview] = useState(null);
 
   const handleFile = (file) => {
@@ -14,16 +14,16 @@ const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
-    axios.post("http://localhost:3000/create-post", formData)
+    const baseUrl = process.env.BASE_URL;
+    axios
+      .post(`${baseUrl}/create-post`, formData)
       .then((res) => {
-        navigate("/post")
-     
+        navigate("/post");
       })
-      .catch((err)=>{
-        console.log(err)
-        alert("Error Creating post")
-      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error Creating post");
+      });
   };
 
   return (
@@ -34,7 +34,6 @@ const navigate = useNavigate()
         </h1>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
-          
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">
               Upload Image
@@ -54,8 +53,8 @@ const navigate = useNavigate()
               </span>
 
               <input
-                type="file"                
-                name="image"               
+                type="file"
+                name="image"
                 accept="image/*"
                 className="absolute inset-0 opacity-0 cursor-pointer"
                 onChange={(e) => handleFile(e.target.files[0])}
@@ -86,16 +85,16 @@ const navigate = useNavigate()
             </label>
 
             <textarea
-              name="caption"           
+              name="caption"
               rows="2"
-              placeholder="Write your caption..." 
+              placeholder="Write your caption..."
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg resize-none 
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
             />
           </div>
 
-          <button 
+          <button
             type="submit"
             className="w-full bg-linear-to-r from-blue-500 to-blue-600 
             text-white py-2.5 rounded-lg font-semibold shadow-md 
@@ -104,7 +103,6 @@ const navigate = useNavigate()
           >
             Post
           </button>
-
         </form>
       </div>
     </section>
