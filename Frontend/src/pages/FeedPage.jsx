@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 const FeedPage = () => {
-  const baseUrl = process.env.BASE_URL;
 
   const [posts, setPosts] = useState([
     {
@@ -11,7 +10,7 @@ const FeedPage = () => {
     },
   ]);
   useEffect(() => {
-    axios.get(`${baseUrl}/posts`).then((res) => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/posts`).then((res) => {
       setPosts(res.data.posts);
     });
   }, []);
